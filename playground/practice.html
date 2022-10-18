@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+      <app-header v-on:increase="increaseNum"></app-header>
+      {{ num }}
+
+    <app-content v-on:increase="increaseNumber"></app-content>
+
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+  <script>
+
+    var appHeader = {
+      template: '<button v-on:click="powNumber"> click </button>',
+      methods:{
+        powNumber: function(){
+          this.$emit('increase')
+        }
+      }
+    }
+
+    var appContent = {
+      template: '<button v-on:click="addNumber">add</button>',
+      methods: {
+        addNumber: function() {
+          this.$emit('increase');
+        }
+      }
+    }
+
+    new Vue({
+        el: '#app',
+        components: {
+          'app-header': appHeader,
+        'app-content': appContent
+
+        },
+        data: {
+          num: 2
+        },
+        methods: {
+          increaseNum: function(){
+            this.num = this.num * this.num
+          },
+          increaseNumber: function() {
+          this.num = this.num + 1;
+        }
+        }
+        
+    })
+  </script>
+</body>
+</html>

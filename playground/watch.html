@@ -10,6 +10,7 @@
     
     <div id="app">
         {{ num }}
+        <button v-on:click="addNum"> increase </button>
     </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,20 +21,17 @@
         data: {
             num: 10
         },
-        computed:{
-            doubleNum: function(){
-            return this.num * 2;
-        }  
-        },
         watch: {
-          num: function(newValue, oldValue) {
-            this.fetchUserByNumber(newValue);
-          }
+          num: function(){
+            this.logText();
+          }  
         },
         methods: {
-            fetchUserByNumber: function(num){
-                // console.log(num);
-                axios.get(num);
+            addNum: function(){
+                this.num = this.num + 1
+            },
+            logText: function(){
+                console.log('changed');
             }
         },
        
